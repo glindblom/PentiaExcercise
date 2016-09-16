@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Pentia Excercise</title>
+    </head>
+    <body>
+        <header>
+            @Html.Partial("_Header")
+        </header>
+        
+        <nav>
+            @Html.Partial("_Navigation")
+        </nav>
+
+        @RenderBody()
+
+        <footer>
+            @Html.Partial("_Footer")
+        </footer>
+    </body>
+</html>

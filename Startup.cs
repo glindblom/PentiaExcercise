@@ -7,6 +7,8 @@ namespace PentiaExcercise
     {
         public void Configure(IApplicationBuilder application)
         {
+            application.UseDeveloperExceptionPage();
+
             application.UseMvc(config => {
                 config.MapRoute
                 (
