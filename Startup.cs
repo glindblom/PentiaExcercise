@@ -5,6 +5,8 @@ using PentiaExcercise.Repository;
 using PentiaExcercise.Service;
 using PentiaExcercise.Extensions;
 using PentiaExcercise.Context;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
 
 namespace PentiaExcercise
 {
@@ -13,6 +15,9 @@ namespace PentiaExcercise
         public void Configure(IApplicationBuilder application)
         {
             application.UseDeveloperExceptionPage();
+            application.UseStaticFiles(new StaticFileOptions() {
+                FileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory())
+            });
 
             application.UseMvc(config => {
                 config.MapRoute

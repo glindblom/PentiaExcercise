@@ -1,0 +1,29 @@
+@model CustomerViewModel
+@{
+    Layout = "_Layout";
+}
+
+<div clas="row col-md-12">
+    <h3>Customer details</h3>
+    <hr />
+    <div class="form-group">
+        <label class="col-md-2">Name</label>
+        <p class="col-md-10">@Model.Name</p>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2">Age</label>
+        <p class="col-md-10">@Model.Age</p>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2">Address</label>
+        <p class="col-md-10">@Model.Address</p>
+    </div>
+</div>
+
+<div class="row col-md-12">
+    <h4>Purchases</h4>
+    <hr />
+    <div>@Html.Partial("../Shared/Components/CarPurchaseList/Default.cshtml", Model.Purchases)</div>
+</div>

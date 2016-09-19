@@ -1,0 +1,30 @@
+@model IEnumerable<CarPurchaseViewModel>
+<table class="table">
+    <thead>
+        <th>Sales person</th>
+        <th>Customer</th>
+        <th>Model</th>
+        <th>Make</th>
+        <th>Color</th>
+        <th>Recommended price</th>
+        <th>Price paid</th>
+        <th>Price difference</th>
+        <th>Order date</th>
+    </thead>
+    <tbody>
+        @foreach (var carPurchase in Model)
+        {
+            <tr>
+                <td>@carPurchase.SalesPerson.Name</td>
+                <td>@carPurchase.Customer.Name</td>
+                <td>@carPurchase.Car.Model</td>
+                <td>@carPurchase.Car.Make</td>
+                <td>@carPurchase.Car.Color</td>
+                <td>@carPurchase.Car.RecommendedPrice</td>
+                <td>@carPurchase.PricePaid</td>
+                <td>@carPurchase.PriceDifference%</td>
+                <td>@carPurchase.OrderDate.ToString("yyyy-MM-dd")</td>
+            </tr>
+        }
+    </tbody>
+</table>

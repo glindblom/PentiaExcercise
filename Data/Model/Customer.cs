@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace PentiaExcercise.Model
 {
@@ -8,9 +9,9 @@ namespace PentiaExcercise.Model
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
+        public string Address { get; set; }
         public DateTime Created { get; set; }
 
-        public int AddressId { get; set; }
-        public Address Address { get; set; }
+        public List<CarPurchase> Purchases { get; set; }
     }
 }

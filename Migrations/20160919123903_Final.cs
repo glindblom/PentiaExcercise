@@ -4,24 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PentiaEcercise.Migrations
 {
-    public partial class First : Migration
+    public partial class Final : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Addresses",
-                columns: table => new
-                {
-                    AddressId = table.Column<int>(nullable: false)
-                        .Annotation("Autoincrement", true),
-                    StreetName = table.Column<string>(nullable: true),
-                    StreetNumber = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Addresses", x => x.AddressId);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Cars",
                 columns: table => new
@@ -30,6 +16,7 @@ namespace PentiaEcercise.Migrations
                         .Annotation("Autoincrement", true),
                     Color = table.Column<string>(nullable: true),
                     Extras = table.Column<string>(nullable: true),
+                    Make = table.Column<string>(nullable: true),
                     Model = table.Column<string>(nullable: true),
                     RecommendedPrice = table.Column<decimal>(nullable: false)
                 },
@@ -44,7 +31,7 @@ namespace PentiaEcercise.Migrations
                 {
                     CustomerId = table.Column<int>(nullable: false)
                         .Annotation("Autoincrement", true),
-                    AddressId = table.Column<int>(nullable: false),
+                    Address = table.Column<string>(nullable: true),
                     Age = table.Column<int>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
@@ -53,12 +40,6 @@ namespace PentiaEcercise.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.CustomerId);
-                    table.ForeignKey(
-                        name: "FK_Customers_Addresses_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "AddressId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -67,19 +48,13 @@ namespace PentiaEcercise.Migrations
                 {
                     SalesPersonId = table.Column<int>(nullable: false)
                         .Annotation("Autoincrement", true),
-                    AddressId = table.Column<int>(nullable: false),
+                    Address = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Salary = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SalesPersons", x => x.SalesPersonId);
-                    table.ForeignKey(
-                        name: "FK_SalesPersons_Addresses_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "AddressId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -89,6 +64,7 @@ namespace PentiaEcercise.Migrations
                     CarPurchaseId = table.Column<int>(nullable: false)
                         .Annotation("Autoincrement", true),
                     CarId = table.Column<int>(nullable: false),
+                    CustomerId = table.Column<int>(nullable: false),
                     OrderDate = table.Column<DateTime>(nullable: false),
                     PricePaid = table.Column<decimal>(nullable: false),
                     SalesPersonId = table.Column<int>(nullable: false)
@@ -101,6 +77,12 @@ namespace PentiaEcercise.Migrations
                         column: x => x.CarId,
                         principalTable: "Cars",
                         principalColumn: "CarId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CarPurchases_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "CustomerId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CarPurchases_SalesPersons_SalesPersonId",
@@ -116,19 +98,14 @@ namespace PentiaEcercise.Migrations
                 column: "CarId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CarPurchases_CustomerId",
+                table: "CarPurchases",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CarPurchases_SalesPersonId",
                 table: "CarPurchases",
                 column: "SalesPersonId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Customers_AddressId",
-                table: "Customers",
-                column: "AddressId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SalesPersons_AddressId",
-                table: "SalesPersons",
-                column: "AddressId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -137,16 +114,13 @@ namespace PentiaEcercise.Migrations
                 name: "CarPurchases");
 
             migrationBuilder.DropTable(
-                name: "Customers");
-
-            migrationBuilder.DropTable(
                 name: "Cars");
 
             migrationBuilder.DropTable(
-                name: "SalesPersons");
+                name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "Addresses");
+                name: "SalesPersons");
         }
     }
 }

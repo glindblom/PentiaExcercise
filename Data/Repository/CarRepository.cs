@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using PentiaExcercise.Context;
 using PentiaExcercise.Model;
 

@@ -1,0 +1,27 @@
+@model IEnumerable<CarViewModel>
+@{
+    Layout = "_Layout";
+}
+
+<h3>Cars</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Recommended Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var car in Model)
+        {
+            <tr>
+                <td>@car.Make</td>
+                <td>@car.Model</td>
+                <td>@car.Color</td>
+                <td>@car.RecommendedPrice</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -8,27 +8,13 @@ using PentiaExcercise.Context;
 namespace PentiaEcercise.Migrations
 {
     [DbContext(typeof(SiteContext))]
-    [Migration("20160916131446_First")]
-    partial class First
+    [Migration("20160919123903_Final")]
+    partial class Final
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
-
-            modelBuilder.Entity("PentiaExcercise.Model.Address", b =>
-                {
-                    b.Property<int>("AddressId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("StreetName");
-
-                    b.Property<int>("StreetNumber");
-
-                    b.HasKey("AddressId");
-
-                    b.ToTable("Addresses");
-                });
 
             modelBuilder.Entity("PentiaExcercise.Model.Car", b =>
                 {
@@ -38,6 +24,8 @@ namespace PentiaEcercise.Migrations
                     b.Property<string>("Color");
 
                     b.Property<string>("Extras");
+
+                    b.Property<string>("Make");
 
                     b.Property<string>("Model");
 
@@ -55,6 +43,8 @@ namespace PentiaEcercise.Migrations
 
                     b.Property<int>("CarId");
 
+                    b.Property<int>("CustomerId");
+
                     b.Property<DateTime>("OrderDate");
 
                     b.Property<decimal>("PricePaid");
@@ -64,6 +54,8 @@ namespace PentiaEcercise.Migrations
                     b.HasKey("CarPurchaseId");
 
                     b.HasIndex("CarId");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("SalesPersonId");
 
@@ -75,7 +67,7 @@ namespace PentiaEcercise.Migrations
                     b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AddressId");
+                    b.Property<string>("Address");
 
                     b.Property<int>("Age");
 
@@ -87,8 +79,6 @@ namespace PentiaEcercise.Migrations
 
                     b.HasKey("CustomerId");
 
-                    b.HasIndex("AddressId");
-
                     b.ToTable("Customers");
                 });
 
@@ -97,15 +87,13 @@ namespace PentiaEcercise.Migrations
                     b.Property<int>("SalesPersonId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AddressId");
+                    b.Property<string>("Address");
 
                     b.Property<string>("Name");
 
                     b.Property<decimal>("Salary");
 
                     b.HasKey("SalesPersonId");
-
-                    b.HasIndex("AddressId");
 
                     b.ToTable("SalesPersons");
                 });
@@ -117,25 +105,14 @@ namespace PentiaEcercise.Migrations
                         .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade);
 
+                    b.HasOne("PentiaExcercise.Model.Customer", "Customer")
+                        .WithMany("Purchases")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("PentiaExcercise.Model.SalesPerson", "SalesPerson")
-                        .WithMany()
+                        .WithMany("Sales")
                         .HasForeignKey("SalesPersonId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("PentiaExcercise.Model.Customer", b =>
-                {
-                    b.HasOne("PentiaExcercise.Model.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("PentiaExcercise.Model.SalesPerson", b =>
-                {
-                    b.HasOne("PentiaExcercise.Model.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

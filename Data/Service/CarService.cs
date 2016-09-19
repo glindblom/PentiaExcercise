@@ -23,6 +23,14 @@ namespace PentiaExcercise.Service
             return result;
         }
 
+        public IQueryable<CarViewModel> Query(Predicate<Car> predicate)
+        {
+            var result = from car in _repository.GetAll()
+                         where predicate(car)
+                         select CarToModel(car);
+            return result;
+        }
+
         public CarViewModel Get(int id)
         {
             var car = _repository.Get(id);
@@ -33,7 +41,12 @@ namespace PentiaExcercise.Service
         {
             return new CarViewModel()
             {
-
+                CarId = car.CarId,
+                Make = car.Make,
+                Model = car.Model,
+                Color = car.Color,
+                Extras = car.Extras,
+                RecommendedPrice = car.RecommendedPrice
             };
         }
     }

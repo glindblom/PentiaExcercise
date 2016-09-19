@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using PentiaExcercise.Model;
 using PentiaExcercise.ViewModels;
 
 namespace PentiaExcercise.Service
@@ -7,5 +9,6 @@ namespace PentiaExcercise.Service
     {
         SalesPersonViewModel Get(int id);
         IQueryable<SalesPersonViewModel> GetAll();
+        IQueryable<SalesPersonViewModel> Query(Predicate<SalesPerson> query);
     }
 }

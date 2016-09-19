@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head >
         <meta charset="utf-8" />
         <title>Pentia Excercise</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/Content/site.css" />
     </head>
-    <body>
-        <header>
+    <body >
+        <header class="header">
             @Html.Partial("_Header")
         </header>
         
@@ -13,9 +15,11 @@
             @Html.Partial("_Navigation")
         </nav>
 
-        @RenderBody()
+        <div class="container">
+            @RenderBody()
+        </div>
 
-        <footer>
+        <footer class="footer">
             @Html.Partial("_Footer")
         </footer>
     </body>

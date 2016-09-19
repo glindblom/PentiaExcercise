@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using PentiaExcercise.Model;
 using PentiaExcercise.ViewModels;
 
 namespace PentiaExcercise.Service
@@ -8,6 +9,6 @@ namespace PentiaExcercise.Service
     {
         CarPurchaseViewModel Get(int id);
         IQueryable<CarPurchaseViewModel> GetAll();
-        IQueryable<CarPurchaseViewModel> Query(Func<CarPurchaseViewModel, bool> query);
+        IQueryable<CarPurchaseViewModel> Query(Predicate<CarPurchase> query);
     }
 }

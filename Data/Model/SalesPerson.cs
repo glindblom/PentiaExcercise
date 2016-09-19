@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PentiaExcercise.Model
 {
     public class SalesPerson
@@ -5,8 +7,7 @@ namespace PentiaExcercise.Model
         public int SalesPersonId { get; set; }
         public string Name { get; set; }
         public decimal Salary { get; set; }
-
-        public int AddressId { get; set; }
-        public Address Address { get; set; }
+        public string Address { get; set; }
+        public List<CarPurchase> Sales { get; set; }
     }
 }
