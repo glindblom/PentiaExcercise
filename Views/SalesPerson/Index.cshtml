@@ -1,0 +1,8 @@
+@model IEnumerable<SalesPersonViewModel>
+@{
+    Layout = "_Layout";
+}
+
+<h3>Sales associates</h3>
+<hr />
+@Html.Partial("../Shared/Components/SalesPersonList/Default.cshtml", Model)

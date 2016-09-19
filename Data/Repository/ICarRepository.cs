@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using PentiaExcercise.Model;
 
@@ -7,5 +8,6 @@ namespace PentiaExcercise.Repository
     {
         Car Get(int id);
         IQueryable<Car> GetAll();
+        IQueryable<Car> Query(Predicate<Car> predicate);
     }
 }

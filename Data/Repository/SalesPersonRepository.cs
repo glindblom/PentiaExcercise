@@ -28,9 +28,15 @@ namespace PentiaExcercise.Repository
         public IQueryable<SalesPerson> GetAll()
         {
             return _context.SalesPersons.Include(sp => sp.Sales)
-                            .ThenInclude(cp => cp.Customer)
-                            .ThenInclude(c => c.Purchases)
-                            .ThenInclude(cp => cp.Car);
+                                        .ThenInclude(cp => cp.Customer)
+                                        .ThenInclude(c => c.Purchases)
+                                        .ThenInclude(cp => cp.Car)
+                                        .AsQueryable();
+        }
+
+        public IQueryable<SalesPerson> Query(Predicate<SalesPerson> predicate)
+        {
+            return GetAll().Where(sp => predicate(sp));
         }
     }
 }

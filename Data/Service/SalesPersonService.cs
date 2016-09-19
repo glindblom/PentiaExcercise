@@ -30,10 +30,11 @@ namespace PentiaExcercise.Service
             return result;
         }
 
-        public IQueryable<SalesPersonViewModel> Query(Predicate<SalesPerson> predicate)
+        public IQueryable<SalesPersonViewModel> Search(string searchString)
         {
-            var result = from salesPerson in _salesPersonRepository.GetAll()
-                         where predicate(salesPerson)
+            Predicate<SalesPerson> predicate = salesPerson => salesPerson.Address.ToLower().Contains(searchString.ToLower()) || salesPerson.Name.ToLower().Contains(searchString.ToLower());
+
+            var result = from salesPerson in _salesPersonRepository.Query(predicate)
                          select Mapper.SalesPersonToModel(salesPerson);
 
             return result;

@@ -9,6 +9,6 @@ namespace PentiaExcercise.Service
     {
         CarPurchaseViewModel Get(int id);
         IQueryable<CarPurchaseViewModel> GetAll();
-        IQueryable<CarPurchaseViewModel> Query(Predicate<CarPurchase> query);
+        IQueryable<CarPurchaseViewModel> Search(string searchString);
     }
 }

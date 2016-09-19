@@ -40,10 +40,11 @@ namespace PentiaExcercise.Service
 
         public IQueryable<CustomerViewModel> Search(string searchString)
         {
-            var result = from customer in _customerRepository.GetAll()
-                         where customer.FirstName.Contains(searchString)
-                                || customer.LastName.Contains(searchString)
-                                || customer.Address.Contains(searchString)
+            Predicate<Customer> predicate = customer => customer.FirstName.ToLower().Contains(searchString.ToLower())
+                                                            || customer.LastName.ToLower().Contains(searchString.ToLower())
+                                                            || customer.Address.ToLower().Contains(searchString.ToLower());
+
+            var result = from customer in _customerRepository.Query(predicate)
                          select Mapper.CustomerToModel(customer);
 
             return result;

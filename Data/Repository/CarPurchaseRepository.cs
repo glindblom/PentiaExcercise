@@ -18,19 +18,22 @@ namespace PentiaExcercise.Repository
 
         public CarPurchase Get(int id)
         {
-            return _context.CarPurchases
-                           .Include(cp => cp.Car)
-                           .Include(cp => cp.Customer)
-                           .Include(cp => cp.SalesPerson)
-                           .FirstOrDefault(x => x.CarPurchaseId == id);
+            return _context.CarPurchases.Include(cp => cp.Car)
+                                        .Include(cp => cp.Customer)
+                                        .Include(cp => cp.SalesPerson)
+                                        .FirstOrDefault(x => x.CarPurchaseId == id);
         }
 
         public IQueryable<CarPurchase> GetAll()
         {
-            return _context.CarPurchases
-                           .Include(cp => cp.Car)
-                           .Include(cp => cp.SalesPerson)
-                           .Include(cp => cp.Customer);
+            return _context.CarPurchases.Include(cp => cp.Car)
+                                        .Include(cp => cp.SalesPerson)
+                                        .Include(cp => cp.Customer);
+        }
+
+        public IQueryable<CarPurchase> Query(Predicate<CarPurchase> predicate)
+        {
+            return GetAll().Where(cp => predicate(cp));
         }
     }
 }

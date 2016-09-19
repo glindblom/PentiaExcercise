@@ -19,35 +19,27 @@ namespace PentiaExcercise.Service
         public IQueryable<CarViewModel> Cars()
         {
             var result = from car in _repository.GetAll()
-                         select CarToModel(car);
-            return result;
-        }
-
-        public IQueryable<CarViewModel> Query(Predicate<Car> predicate)
-        {
-            var result = from car in _repository.GetAll()
-                         where predicate(car)
-                         select CarToModel(car);
+                         select Mapper.CarToModel(car);
             return result;
         }
 
         public CarViewModel Get(int id)
         {
             var car = _repository.Get(id);
-            return car != null ? CarToModel(car) : null;
+            return car != null ? Mapper.CarToModel(car) : null;
         }
 
-        private CarViewModel CarToModel(Car car)
+        public IQueryable<CarViewModel> Search(string searchString)
         {
-            return new CarViewModel()
-            {
-                CarId = car.CarId,
-                Make = car.Make,
-                Model = car.Model,
-                Color = car.Color,
-                Extras = car.Extras,
-                RecommendedPrice = car.RecommendedPrice
-            };
+            Predicate<Car> predicate = car => car.Make.ToLower().Contains(searchString.ToLower())
+                                                || car.Model.ToLower().Contains(searchString.ToLower())
+                                                || car.Color.ToLower().Contains(searchString.ToLower())
+                                                || car.Extras.ToLower().Contains(searchString.ToLower());
+
+            var result = from car in _repository.Query(predicate)
+                         select Mapper.CarToModel(car);
+
+            return result;
         }
     }
 }
