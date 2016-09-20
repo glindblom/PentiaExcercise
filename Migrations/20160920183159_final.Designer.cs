@@ -8,8 +8,8 @@ using PentiaExcercise.Context;
 namespace PentiaEcercise.Migrations
 {
     [DbContext(typeof(SiteContext))]
-    [Migration("20160919123903_Final")]
-    partial class Final
+    [Migration("20160920183159_final")]
+    partial class final
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -89,7 +89,9 @@ namespace PentiaEcercise.Migrations
 
                     b.Property<string>("Address");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
 
                     b.Property<decimal>("Salary");
 

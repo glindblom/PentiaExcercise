@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PentiaEcercise.Migrations
 {
-    public partial class Final : Migration
+    public partial class final : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,7 +49,8 @@ namespace PentiaEcercise.Migrations
                     SalesPersonId = table.Column<int>(nullable: false)
                         .Annotation("Autoincrement", true),
                     Address = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
                     Salary = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>

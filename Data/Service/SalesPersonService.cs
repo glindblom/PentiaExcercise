@@ -32,9 +32,14 @@ namespace PentiaExcercise.Service
 
         public IQueryable<SalesPersonViewModel> Search(string searchString)
         {
-            Predicate<SalesPerson> predicate = salesPerson => salesPerson.Address.ToLower().Contains(searchString.ToLower()) || salesPerson.Name.ToLower().Contains(searchString.ToLower());
+            searchString = searchString.ToLower();
 
-            var result = from salesPerson in _salesPersonRepository.Query(predicate)
+            Predicate<SalesPerson> predicate = salesPerson =>
+                   salesPerson.Address.ToLower().Contains(searchString)
+                || $"{salesPerson.FirstName} {salesPerson.LastName}".ToLower().Contains(searchString);
+
+            var result = from salesPerson in _salesPersonRepository.GetAll()
+                         where predicate(salesPerson)
                          select Mapper.SalesPersonToModel(salesPerson);
 
             return result;

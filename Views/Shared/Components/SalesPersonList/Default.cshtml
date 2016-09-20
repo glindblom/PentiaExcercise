@@ -1,25 +1,3 @@
 @model IEnumerable<SalesPersonViewModel>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Salary</th>
-            <th>Sales</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var salesPerson in Model)
-        {
-            <tr>
-                <td>@salesPerson.Name</td>
-                <td>@salesPerson.Address</td>
-                <td>@salesPerson.Salary</td>
-                <td>@salesPerson.Sales.Count()</td>
-                <td><a asp-action="Details" asp-controller="SalesPerson" asp-route-id="@salesPerson.SalesPersonId">Details</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
+<h4><a asp-controller="SalesPerson" asp-action="Index">Sales people</a></h4>
+@Html.Partial("_SalesPersonTable", Model)

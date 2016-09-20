@@ -39,10 +39,8 @@ namespace PentiaExcercise.Service
         {
             searchString = searchString.ToLower();
             Predicate<CarPurchase> predicate = carPurchase =>
-                    carPurchase.Customer.FirstName.ToLower().Contains(searchString) || carPurchase.Customer.LastName.ToLower().Contains(searchString) ||
-                    carPurchase.SalesPerson.Name.ToLower().Contains(searchString) || carPurchase.Car.Make.ToLower().Contains(searchString) ||
-                    carPurchase.Car.Model.ToLower().Contains(searchString);
-
+                    $"{carPurchase.SalesPerson.FirstName} {carPurchase.SalesPerson.LastName}".ToLower().Contains(searchString) || 
+                    $"{carPurchase.Car.Make} {carPurchase.Car.Model}".ToLower().Contains(searchString);
 
             var result = from carPurchase in _carPurchaseRepository.GetAll()
                          where predicate(carPurchase)

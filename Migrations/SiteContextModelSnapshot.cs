@@ -88,7 +88,9 @@ namespace PentiaEcercise.Migrations
 
                     b.Property<string>("Address");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
 
                     b.Property<decimal>("Salary");
 

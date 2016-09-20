@@ -25,10 +25,5 @@ namespace PentiaExcercise.Repository
         {
             return _context.Cars.FirstOrDefault(c => c.CarId == id);
         }
-
-        public IQueryable<Car> Query(Predicate<Car> predicate)
-        {
-            return GetAll().Where(c => predicate(c));
-        }
     }
 }

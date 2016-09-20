@@ -34,10 +34,5 @@ namespace PentiaExcercise.Repository
                                      .ThenInclude(cp => cp.Car)
                                      .AsQueryable();
         }
-
-        public IQueryable<Customer> Query(Predicate<Customer> predicate)
-        {
-            return GetAll().Where(c => predicate(c));
-        }
     }
 }

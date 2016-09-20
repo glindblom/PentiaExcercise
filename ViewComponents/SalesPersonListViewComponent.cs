@@ -7,6 +7,9 @@ using PentiaExcercise.ViewModels;
 
 namespace PentiaExcercise.ViewComponents
 {
+    /// <summary>
+    /// View component to fetch and display a list of SalesPersonViewModels
+    /// </summary>
     public class SalesPersonListViewComponent : ViewComponent
     {
         private ISalesPersonService _salesPersonService;
@@ -16,6 +19,10 @@ namespace PentiaExcercise.ViewComponents
             _salesPersonService = salesPersonService;
         }
 
+        /// <summary>
+        /// Invokes the async fetch
+        /// </summary>
+        /// <returns>The view registered to the ViewComponent, at /Views/Shared/Components/{ViewComponent}/Default.cshtml</returns>
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var items = await GetItems();

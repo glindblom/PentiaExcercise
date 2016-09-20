@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace PentiaExcercise.Model
 {
+    /// <summary>
+    /// Customer class representing a customer table in the database.
+    /// </summary>
     public class Customer
     {
         public int CustomerId { get; set; }

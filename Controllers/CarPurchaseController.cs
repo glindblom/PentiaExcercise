@@ -20,6 +20,7 @@ namespace PentiaExcercise.Controllers
         [HttpPost]
         public IActionResult Search(string searchString)
         {
+            searchString += ""; // Ugly way of ensuring the parameter isn't null
             var result = _carPurchaseService.Search(searchString);
             return View("Index", result);
         }

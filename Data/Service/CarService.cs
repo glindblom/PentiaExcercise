@@ -31,12 +31,15 @@ namespace PentiaExcercise.Service
 
         public IQueryable<CarViewModel> Search(string searchString)
         {
-            Predicate<Car> predicate = car => car.Make.ToLower().Contains(searchString.ToLower())
-                                                || car.Model.ToLower().Contains(searchString.ToLower())
-                                                || car.Color.ToLower().Contains(searchString.ToLower())
-                                                || car.Extras.ToLower().Contains(searchString.ToLower());
+            searchString = searchString.ToLower();
+            Predicate<Car> predicate = car =>
+                car.Make.ToLower().Contains(searchString) || 
+                car.Model.ToLower().Contains(searchString) || 
+                car.Color.ToLower().Contains(searchString) || 
+                car.Extras.ToLower().Contains(searchString);
 
-            var result = from car in _repository.Query(predicate)
+            var result = from car in _repository.GetAll()
+                         where predicate(car)
                          select Mapper.CarToModel(car);
 
             return result;

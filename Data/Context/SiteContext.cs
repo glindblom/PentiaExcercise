@@ -12,11 +12,13 @@ namespace PentiaExcercise.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // Use Sqlite for ease and speed to setup
             optionsBuilder.UseSqlite("Filename=./site.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Make sure the one-to-many relationships are setup correctly
             modelBuilder.Entity<Customer>()
                         .HasMany(c => c.Purchases)
                         .WithOne(cp => cp.Customer)

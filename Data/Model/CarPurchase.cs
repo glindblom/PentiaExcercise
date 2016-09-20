@@ -2,6 +2,9 @@ using System;
 
 namespace PentiaExcercise.Model
 {
+    /// <summary>
+    /// CarPurchase class representing a car purchase table in the database.
+    /// </summary>
     public class CarPurchase
     {
         public int CarPurchaseId { get; set; }

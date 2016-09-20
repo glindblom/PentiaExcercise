@@ -1,5 +1,8 @@
 namespace PentiaExcercise.ViewModels
 {
+    /// <summary>
+    /// View model created to enable dynamic generation of search fields in views
+    /// </summary>
     public class SearchFieldViewModel
     {
         public string Controller { get; set; }

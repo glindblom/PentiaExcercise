@@ -5,17 +5,14 @@
 <h3>Pentia excercise</h3>
 <hr />
 <div class="col-lg-12">
-    <h4><a asp-action="Index" asp-controller="Customer">Customers</a></h4>
-    @Html.Partial("_SearchField", new SearchFieldViewModel { Controller = "Customer", Action = "Search", Placeholder = "Filter by name, address" })
     @await Component.InvokeAsync("CustomerList")
+    <hr />
 </div>
 <div class="col-lg-12">
-    <h4><a asp-action="Index" asp-controller="SalesPerson">Sales people</a></h4>
-    @Html.Partial("_SearchField", new SearchFieldViewModel { Controller = "SalesPerson", Action = "Search", Placeholder = "Filter by name, address" })
     @await Component.InvokeAsync("SalesPersonList")
+    <hr />
 </div>
+<hr />
 <div class="col-lg-12">
-    <h4><a asp-action="Index" asp-controller="CarPurchase">Car purchases</a></h4>
-    @Html.Partial("_SearchField", new SearchFieldViewModel { Controller = "CarPurchase", Action = "Search", Placeholder = "Filter by model, make, sales associate ..."})
     @await Component.InvokeAsync("CarPurchaseList")
 </div>

@@ -9,7 +9,6 @@ namespace PentiaExcercise.ViewModels
         public string Model { get; set; }
         public string Color { get; set; }
         public string Extras { get; set; }
-        [DataType(DataType.Currency)]
         public decimal RecommendedPrice { get; set; }
     }
 }

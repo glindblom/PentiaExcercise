@@ -1,0 +1,21 @@
+@model IEnumerable<CustomerViewModel>
+@Html.Partial("_SearchField", new SearchFieldViewModel() { Controller = "Customer", Action = "Search", Placeholder = "Filter by name, address" })
+<table class="table">
+    <thead>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Purchases</th>
+        <th></th>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.Name</td>
+                <td>@customer.Address</td>
+                <td>@customer.Purchases.Count()</td>
+                <td><a asp-action="Details" asp-controller="Customer" asp-route-id="@customer.CustomerId">Details</a></td>
+            </tr>
+        }
+    </tbody>
+</table>    

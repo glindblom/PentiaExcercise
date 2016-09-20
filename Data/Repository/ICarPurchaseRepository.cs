@@ -8,6 +8,5 @@ namespace PentiaExcercise.Repository
     {
         CarPurchase Get(int id);
         IQueryable<CarPurchase> GetAll();
-        IQueryable<CarPurchase> Query(Predicate<CarPurchase> predicate);
     }
 }
